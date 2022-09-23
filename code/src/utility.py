@@ -3,6 +3,8 @@ import math
 import time
 import datetime
 from functools import reduce
+
+import imageio
 from PIL import Image
 
 import matplotlib
@@ -155,7 +157,7 @@ class checkpoint():
         for v, p in zip(save_list, postfix):
             normalized = v[0].data.mul(255 / self.args.rgb_range)
             ndarr = normalized.byte().permute(1, 2, 0).cpu().numpy()
-            misc.imsave('{}{}.png'.format(filename, p), ndarr)
+            imageio.imsave('{}{}.png'.format(filename, p), ndarr)
 
 def quantize(img, rgb_range):
     pixel_range = 255 / rgb_range

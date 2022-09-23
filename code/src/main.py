@@ -1,5 +1,5 @@
 import torch
-
+torch.cuda.current_device()
 import utility
 import data
 import model
@@ -30,18 +30,19 @@ def print_setting(net, args):
      print('train loss:', args.loss)
      print('save_name:', args.save)
 
-torch.manual_seed(args.seed)
-checkpoint = utility.checkpoint(args)
+if __name__=="__main__":
+    torch.manual_seed(args.seed)
+    checkpoint = utility.checkpoint(args)
 
-if checkpoint.ok:
-    loader = data.Data(args)
-    model = model.Model(args, checkpoint)
-    print_setting(model, args)
-    loss = loss.Loss(args, checkpoint) if not args.test_only else None
-    t = Trainer(args, loader, model, loss, checkpoint)
-    while not t.terminate():
-        t.train()
-        t.test()
+    if checkpoint.ok:
+        loader = data.Data(args)
+        model = model.Model(args, checkpoint)
+        print_setting(model, args)
+        loss = loss.Loss(args, checkpoint) if not args.test_only else None
+        t = Trainer(args, loader, model, loss, checkpoint)
+        while not t.terminate():
+            t.train()
+            t.test()
 
-    checkpoint.done()
+        checkpoint.done()
 
