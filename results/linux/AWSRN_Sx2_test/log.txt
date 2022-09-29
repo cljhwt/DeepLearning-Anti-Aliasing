@@ -1,0 +1,79 @@
+MODEL(
+  (head): Sequential(
+    (0): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (body): Sequential(
+    (0): LFB(
+      (b0): AWRU(
+        (res_scale): Scale()
+        (x_scale): Scale()
+        (body): Sequential(
+          (0): Conv2d(32, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): ReLU(inplace)
+          (2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (b1): AWRU(
+        (res_scale): Scale()
+        (x_scale): Scale()
+        (body): Sequential(
+          (0): Conv2d(32, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): ReLU(inplace)
+          (2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (b2): AWRU(
+        (res_scale): Scale()
+        (x_scale): Scale()
+        (body): Sequential(
+          (0): Conv2d(32, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): ReLU(inplace)
+          (2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (b3): AWRU(
+        (res_scale): Scale()
+        (x_scale): Scale()
+        (body): Sequential(
+          (0): Conv2d(32, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): ReLU(inplace)
+          (2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (reduction): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (res_scale): Scale()
+      (x_scale): Scale()
+    )
+  )
+  (tail): AWMS(
+    (tail_k3): Conv2d(32, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (tail_k5): Conv2d(32, 12, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (tail_k7): Conv2d(32, 12, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+    (tail_k9): Conv2d(32, 12, kernel_size=(9, 9), stride=(1, 1), padding=(4, 4))
+    (pixelshuffle): PixelShuffle(upscale_factor=2)
+    (scale_k3): Scale()
+    (scale_k5): Scale()
+    (scale_k7): Scale()
+    (scale_k9): Scale()
+  )
+  (skip): Sequential(
+    (0): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): PixelShuffle(upscale_factor=2)
+  )
+)
+[Epoch 1]	Learning rate: 1.000000e-3
+[3200/32000]	[L1: 12.4780]	6.1+12.7s
+[6400/32000]	[L1: 9.3168]	6.1+12.5s
+[9600/32000]	[L1: 8.0406]	6.1+12.5s
+[12800/32000]	[L1: 7.2997]	3.3+6.0s
+[16000/32000]	[L1: 6.8055]	3.0+5.8s
+[19200/32000]	[L1: 6.4492]	3.2+5.8s
+[22400/32000]	[L1: 6.1949]	3.2+5.5s
+[25600/32000]	[L1: 5.9831]	3.1+5.7s
+[28800/32000]	[L1: 5.8123]	3.2+5.7s
+[32000/32000]	[L1: 5.6667]	3.2+5.8s
+
+Evaluation:
+[Urban100 x2]	PSNR: 28.312 (Best PSNR: 28.312 @epoch 1)
+Total time: 214.37s
+
