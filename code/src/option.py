@@ -77,7 +77,6 @@ parser.add_argument('--precision', type=str, default='single',
 
 
 # Training specifications
-<<<<<<< HEAD
 parser.add_argument('--reset', action='store_false',
                     help='reset the training')
 parser.add_argument('--test_every', type=int, default=100,
@@ -130,29 +129,17 @@ parser.add_argument('--skip_threshold', type=float, default='1e6',
                     help='skipping batch that has large error')
 
 # Log specifications
-<<<<<<< HEAD
 parser.add_argument('--save', type=str, default='AWSRNx2_9.29',
-=======
-parser.add_argument('--save', type=str, default='AWSRN_Sx2',
->>>>>>> c519e6275b542767a376a588fbe76471aacc9211
                     help='file name to save')
 parser.add_argument('--load', type=str, default='.',
                     help='file name to load')
 parser.add_argument('--resume', type=int, default=0,
                     help='resume from specific checkpoint')
-<<<<<<< HEAD
 parser.add_argument('--save_models', action='store_false',
                     help='save all intermediate models')
 parser.add_argument('--print_every', type=int, default=100,
                     help='how many batches to wait before logging training status')
 parser.add_argument('--save_results', action='store_false',
-=======
-parser.add_argument('--save_models', action='store_true',
-                    help='save all intermediate models')
-parser.add_argument('--print_every', type=int, default=100,
-                    help='how many batches to wait before logging training status')
-parser.add_argument('--save_results', action='store_true',
->>>>>>> c519e6275b542767a376a588fbe76471aacc9211
                     help='save output results')
 
 args = parser.parse_args()
